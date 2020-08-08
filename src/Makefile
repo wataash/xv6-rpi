@@ -1,5 +1,6 @@
 # specify path to QEMU, installed with MacPorts 
 QEMU = qemu-system-arm
+QEMU_GDB_PORT := 1234
 
 include makefile.inc
 
@@ -50,7 +51,7 @@ kernel.elf: $(addprefix build/,$(KERN_OBJS)) kernel.ld build/initcode build/fs.i
 qemu: kernel.elf
 	@clear
 	@echo "Press Ctrl-A and then X to terminate QEMU session\n"
-	$(QEMU) -M versatilepb -m 128 -cpu arm1176  -nographic -kernel kernel.elf
+	$(QEMU) -M versatilepb -m 128 -cpu arm1176  -nographic -kernel kernel.elf -gdb tcp::$(QEMU_GDB_PORT) -S
 
 INITCODE_OBJ = initcode.o
 $(addprefix build/,$(INITCODE_OBJ)): initcode.S
