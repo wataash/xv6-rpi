@@ -11,7 +11,16 @@
 #include "stat.h"
 #include "param.h"
 
+// gcc -Werror -Wall -iquote ../ -o mkfs mkfs.c
+// mkfs.c:14: error: "static_assert" redefined [-Werror]
+//  #define static_assert(a, b) do { switch (0) case 0: case (a): ; } while (0)
+//
+// In file included from mkfs.c:6:
+// /usr/include/assert.h:143: note: this is the location of the previous definition
+//  # define static_assert _Static_assert
+#ifndef static_assert
 #define static_assert(a, b) do { switch (0) case 0: case (a): ; } while (0)
+#endif
 
 int nblocks = 985;
 int nlog = LOGSIZE;

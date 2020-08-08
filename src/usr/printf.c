@@ -2,6 +2,8 @@
 #include "stat.h"
 #include "user.h"
 
+#include "raise.c"
+
 static void
 putc(int fd, char c)
 {

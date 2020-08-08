@@ -7,6 +7,8 @@
 #include "arm.h"
 #include "mmu.h"
 
+#include "raise.c"
+
 void cli (void)
 {
     uint val;

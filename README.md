@@ -1,3 +1,5 @@
+build on Ubuntu 19.04: `make CROSSCOMPILE=arm-linux-gnueabi- V=1 qemu`
+
 xv6-rpi
 =======
 

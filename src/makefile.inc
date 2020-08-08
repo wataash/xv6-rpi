@@ -7,9 +7,20 @@ LD = $(CROSSCOMPILE)ld
 OBJCOPY = $(CROSSCOMPILE)objcopy
 OBJDUMP = $(CROSSCOMPILE)objdump
 
-CFLAGS = -march=armv6 -fno-pic -static -fno-builtin -fno-strict-aliasing -Wall -Werror -I.
+# -fno-stack-protector: to fix:
+#   arm-linux-gnueabi-ld -L. -N -e main -Ttext 0 -o _cat cat.o ulib.o usys.o printf.o umalloc.o  -L ../ /usr/lib/gcc-cross/arm-linux-gnueabi/8/libgcc.a
+#   arm-linux-gnueabi-ld: ulib.o: in function `gets':
+#   /home/wsh/qc/xv6-rpi/src/usr/ulib.c:94: undefined reference to `__stack_chk_fail'
+#   arm-linux-gnueabi-ld: /home/wsh/qc/xv6-rpi/src/usr/ulib.c:94: undefined reference to `__stack_chk_guard'
+#   arm-linux-gnueabi-ld: printf.o: in function `printint':
+#   /home/wsh/qc/xv6-rpi/src/usr/printf.c:38: undefined reference to `__stack_chk_fail'
+#   arm-linux-gnueabi-ld: /home/wsh/qc/xv6-rpi/src/usr/printf.c:38: undefined reference to `__stack_chk_guard'
+#   make[1]: *** [Makefile:32: _cat] Error 1
+# -ggdb3: too large, link error
+# CFLAGS = -ggdb3 -march=armv6 -fno-pic -static -fno-builtin -fno-strict-aliasing -fno-stack-protector -Wall -Werror -I.
+CFLAGS = -g -march=armv6 -fno-pic -static -fno-builtin -fno-strict-aliasing -fno-stack-protector -Wall -Werror -I.
 LDFLAGS = -L.
-ASFLAGS = -march=armv6 
+ASFLAGS = -march=armv6 -g
 
 LIBGCC = $(shell $(CC) -print-libgcc-file-name)
 
