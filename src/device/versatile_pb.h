@@ -19,7 +19,18 @@
 
 #define STACK_FILL      0xdeadbeef
 
+// qemu/hw/arm/versatilepb.c
+//     pl011_create(0x101f1000, pic[12], serial_hd(0));
+//     pl011_create(0x101f2000, pic[13], serial_hd(1));
+//     pl011_create(0x101f3000, pic[14], serial_hd(2));
+//     pl011_create(0x10009000, sic[6], serial_hd(3));
+//     /*  0x10009000 UART3.  */
+//     /*  0x101f1000 UART0.  */
+//     /*  0x101f2000 UART1.  */
+//     /*  0x101f3000 UART2.  */
 #define UART0           0x101f1000
+#define UART1           0x101f2000
+#define UART2           0x101f3000
 #define UART_CLK        24000000    // Clock rate for UART
 
 #define TIMER0          0x101E2000

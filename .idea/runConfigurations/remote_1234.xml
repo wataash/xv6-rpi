@@ -1,0 +1,5 @@
+<component name="ProjectRunConfigurationManager">
+  <configuration default="false" name="remote 1234" type="CLion_Remote" debugger="$USER_HOME$/opt/gdb/bin/gdb99" remoteCommand="tcp::1234" symbolFile="$PROJECT_DIR$/src/kernel.elf" sysroot="">
+    <method v="2" />
+  </configuration>
+</component>

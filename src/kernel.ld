@@ -9,6 +9,7 @@ SECTIONS
   /* the entry point, before enabling paging. The code to enable paing
    needs to have the same virtual/physical address. entry.S and start.c
    run in this initial setting.*/
+  /* . = 0x9000; */
   . = 0x10000;
   .start_sec : {
     build/entry.o(.text)

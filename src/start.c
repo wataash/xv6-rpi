@@ -10,6 +10,10 @@ void _uart_putc(int c)
 {
     volatile uint8 * uart0 = (uint8*)UART0;
     *uart0 = c;
+    volatile uint8 * uart1 = (uint8*)UART1;
+    *uart1 = c;
+    volatile uint8 * uart2 = (uint8*)UART2;
+    *uart2 = c;
 }
 
 
